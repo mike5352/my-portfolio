@@ -35,6 +35,40 @@
       --radius-sm: 6px;
     }
 
+    html[data-theme="light"] {
+      --bg: #faf9f6;
+      --bg-2: #f2f0eb;
+      --bg-3: #e8e5df;
+      --surface: #ffffff;
+      --surface-2: #f5f4ef;
+      --border: rgba(0, 0, 0, 0.08);
+      --border-2: rgba(0, 0, 0, 0.14);
+      --accent: #d07d14;
+      --accent-2: #b0650c;
+      --accent-light: rgba(208, 125, 20, 0.12);
+      --text: #1a1a1a;
+      --text-2: #525252;
+      --text-3: #7a7a7a;
+      --green: #16a34a;
+      --blue: #2563eb;
+      --purple: #7c3aed;
+      --red: #dc2626;
+      --screenshot-bg: #e8e5df;
+    }
+
+    html[data-theme="light"] .screenshot-preview .img-cell,
+    html[data-theme="light"] .screenshot-detail .img-cell {
+      background: var(--screenshot-bg);
+    }
+
+    html[data-theme="light"] .screenshot-detail {
+      background: var(--screenshot-bg);
+    }
+
+    html[data-theme="light"] .project-image img {
+      background: var(--screenshot-bg);
+    }
+
     *,
     *::before,
     *::after {
@@ -55,6 +89,7 @@
       line-height: 1.75;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     /* ─── NOISE OVERLAY ─── */
@@ -82,6 +117,11 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 40px;
+      transition: background-color 0.3s ease;
+    }
+
+    html[data-theme="light"] nav {
+      background: rgba(250, 249, 246, 0.85);
     }
 
     .nav-brand {
@@ -93,6 +133,12 @@
 
     .nav-brand span {
       color: var(--accent);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 28px;
     }
 
     .nav-links {
@@ -112,6 +158,41 @@
 
     .nav-links a:hover {
       color: var(--accent);
+    }
+
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 28px;
+      border-radius: 100px;
+      background: rgba(34, 34, 44, 0.6);
+      border: 1px solid var(--border);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      padding: 0;
+    }
+
+    html[data-theme="light"] .theme-toggle {
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .theme-toggle:hover {
+      background: var(--surface-2);
+      color: var(--accent);
+      border-color: rgba(232, 168, 76, 0.4);
+    }
+
+    .theme-toggle svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     /* ─── SECTIONS ─── */
@@ -1188,6 +1269,14 @@
       background: var(--bg-2);
     }
 
+    #spotu .project-card {
+      background: var(--bg-3);
+    }
+
+    #spotu .project-image {
+      background: var(--surface);
+    }
+
     .spotu-apps-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1433,13 +1522,18 @@
   <!-- NAV -->
   <nav>
     <div class="nav-brand">전용후 <span>포트폴리오</span></div>
-    <ul class="nav-links">
-      <li><a href="#about">소개</a></li>
-      <li><a href="#spotu">스포투 기획</a></li>
-      <li><a href="#projects">바이브코딩 프로젝트</a></li>
-      <li><a href="#business">경력</a></li>
-      <li><a href="#contact">연락처</a></li>
-    </ul>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#about">소개</a></li>
+        <li><a href="#spotu">스포투 기획</a></li>
+        <li><a href="#projects">바이브코딩 프로젝트</a></li>
+        <li><a href="#business">경력</a></li>
+        <li><a href="#contact">연락처</a></li>
+      </ul>
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+        <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"></svg>
+      </button>
+    </div>
   </nav>
 
   <!-- HERO -->
@@ -1594,6 +1688,180 @@
           (주)스포투 재직 3년간 크로스핏 트래커 앱 <strong style="color:var(--text);">Spotu</strong>와
           AI 피트니스 코치 앱 <strong style="color:var(--text);">Fit Sam(PT쌤)</strong>의 초기 서비스 기획을 총괄했습니다.
           미국 PoC부터 국내 10,000명 유저 확보까지, 기능 명세·IA·UX·글로벌 런칭을 기여도 100%로 주도했습니다.
+        </p>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Spotu Card -->
+        <div class="project-card featured">
+          <div class="project-image">
+            <div class="screenshot-preview">
+              <div class="img-cell"><img src="https://i.ibb.co/4ggkpBN7/5.jpg" alt="Spotu Main"></div>
+              <div class="img-cell"><img src="https://i.ibb.co/PvSnZFSC/4.jpg" alt="Spotu Dashboard"></div>
+            </div>
+            <div class="screenshot-detail">
+              <div class="img-cell"><img src="https://i.ibb.co/4ggkpBN7/5.jpg" alt="Spotu"></div>
+              <div class="img-cell"><img src="https://i.ibb.co/PvSnZFSC/4.jpg" alt="Spotu"></div>
+              <div class="img-cell"><img src="https://i.ibb.co/rGbcXbfD/1.jpg" alt="Spotu"></div>
+              <div class="img-cell"><img src="https://i.ibb.co/6JrVkfRS/3.jpg" alt="Spotu"></div>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-meta">
+              <span class="project-category cat-edtech">Fitness · CrossFit Tracker</span>
+              <span class="project-period">2023.07–2023.11</span>
+            </div>
+            <h3>Spotu V2 <span style="font-size:13px;font-weight:400;color:var(--text-3);">미국향 앱 전면 리뉴얼 기획</span></h3>
+            <p class="project-oneliner">전세계 크로스핏터 대상 미국 현지 PoC 완료. 기존 11p 뎁스 앱을 3p로 전면 리뉴얼해 bounce rate 0% 달성.</p>
+
+            <div class="project-detail" id="spotu-detail-1">
+              <div class="detail-block">
+                <div class="detail-label">문제 정의</div>
+                <p class="detail-text">버전1 글로벌 피드백 분석 결과 <strong>복잡한 온보딩(8p 이메일 인증), 11p 뎁스, 운동 중 읽기 힘든 소형 폰트·복잡한
+                    지표</strong> 3가지 핵심 문제 확인. 미국 PoC를 위해 전면 리뉴얼 결정.</p>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">내 역할</div>
+                <p class="detail-text">기획 총괄 매니저(기여도 100%). 정책·유저 플로우·IA·프로세스 정의·와이어프레임 전 과정 단독 설계. 디자이너·FE·BE와 협업,
+                  Google Docs 기획서 작성, GA로 성과 측정.</p>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">핵심 기능</div>
+                <div class="feature-chips">
+                  <span class="feature-chip">소셜 로그인 온보딩</span>
+                  <span class="feature-chip">3p 뎁스 IA</span>
+                  <span class="feature-chip">실시간 바이털 모니터링</span>
+                  <span class="feature-chip">대형 폰트 운동 UI</span>
+                  <span class="feature-chip">운동 기록·결과</span>
+                  <span class="feature-chip">리더보드 (사용자 35% 주기 이용)</span>
+                </div>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">임팩트</div>
+                <div class="impact-item">운동 시작 bounce rate 0% 달성</div>
+                <div class="impact-item">미국 현지 100명 유저 인터뷰 만족도 100%</div>
+                <div class="impact-item">25% 사용자가 30분 이상 사용하는 앱으로 성장 → 플랫폼 진화 가능성 확인</div>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">린캔버스 요약</div>
+                <p class="detail-text"><strong>문제:</strong> 실내운동 과학적 트래킹 솔루션 부재·운동 중 바이털 확인 어려움<br><strong>고객:</strong>
+                  CrossFit 매니아·다양한 운동 트래킹 원하는 Gym-goer<br><strong>경쟁우위:</strong> CrossFit 특화 유일한 트래커·센서 특허·퍼포먼스
+                  집중<br><strong>채널:</strong> 온라인 쇼핑몰·B2B 박스 파트너십·운동기구 판매점</p>
+              </div>
+            </div>
+
+            <div class="project-footer">
+              <div class="tech-stack">
+                <span class="tech-badge">IA 설계</span>
+                <span class="tech-badge">UX 리뉴얼</span>
+                <span class="tech-badge">글로벌 PoC</span>
+                <span class="tech-badge">GA 분석</span>
+              </div>
+              <button class="toggle-btn" onclick="toggleDetail('spotu-detail-1', this)">
+                자세히 보기
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fit Sam Card -->
+        <div class="project-card featured">
+          <div class="project-image">
+            <div class="screenshot-preview">
+              <div class="img-cell"><img src="https://i.ibb.co/Y48MdJNq/7.jpg" alt="Fit Sam Screenshot 1"></div>
+              <div class="img-cell"><img src="https://i.ibb.co/PzhTGN8h/a-2.jpg" alt="Fit Sam Screenshot 2"></div>
+            </div>
+            <div class="screenshot-detail">
+              <div class="img-cell"><img src="https://i.ibb.co/Y48MdJNq/7.jpg" alt="Fit Sam Screenshot 1"></div>
+              <div class="img-cell"><img src="https://i.ibb.co/PzhTGN8h/a-2.jpg" alt="Fit Sam Screenshot 2"></div>
+              <div class="img-cell"><img src="https://i.ibb.co/BH0RZgWy/a-1.jpg" alt="Fit Sam Screenshot 3"></div>
+              <div class="img-cell"><img src="https://i.ibb.co/FLrZfV19/a.jpg" alt="Fit Sam Screenshot 4"></div>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-meta">
+              <span class="project-category cat-edtech">Fitness · AI Coach</span>
+              <span class="project-period">2023.06–2024.03</span>
+            </div>
+            <h3>Fit Sam (PT쌤) <span style="font-size:13px;font-weight:400;color:var(--text-3);">AI 피트니스 코치 앱</span></h3>
+            <p class="project-oneliner">MZ 여성·운동 초보자 타겟, AI 보이스 코칭과 120가지 게이미피케이션 보상 설계. 국내 가입자 10,000명 달성, 여성 우세 7:3
+              성비.</p>
+
+            <div class="project-detail" id="spotu-detail-2">
+              <div class="detail-block">
+                <div class="detail-label">문제 정의</div>
+                <p class="detail-text">기존 피트니스 앱은 <strong>중급자용 기록 앱</strong>에 집중. 운동 방법 모르는 초보자·PT비 부담층 솔루션 부재. MZ 리텐션
+                  지속 저하.</p>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">내 역할</div>
+                <p class="detail-text">기여도 100%. 추천 로직·게임화 로직·영문화 기획 총괄. 신체부위 6군×각 20개 운동 DB, Google Spreadsheet로 200개
+                  운동 튜토리얼 기획서 작성. 유튜브 추천 로직(유튜버 50명 라벨링) 포함.</p>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">핵심 기능</div>
+                <div class="feature-chips">
+                  <span class="feature-chip">AI 보이스 코칭</span>
+                  <span class="feature-chip">120가지 게이미피케이션 보상</span>
+                  <span class="feature-chip">신체부위 선택 운동 추천</span>
+                  <span class="feature-chip">유튜브 추천 로직 DB</span>
+                  <span class="feature-chip">영문화 DB (2,000개 ID)</span>
+                  <span class="feature-chip">슬로우 모드</span>
+                </div>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">임팩트</div>
+                <div class="impact-item">국내 가입자 10,000명 달성 · 여성 우세 7:3 성비 전연령</div>
+                <div class="impact-item">게이미피케이션 기능 사용률 100% (전 사용자)</div>
+                <div class="impact-item">운동 추천 MVP 전 사용자 최소 1회 이상 사용</div>
+                <div class="impact-item">안드로이드 종료 방지 팝업 → 169명 앱 이탈 방지</div>
+              </div>
+              <div class="detail-block">
+                <div class="detail-label">린캔버스 요약</div>
+                <p class="detail-text"><strong>문제:</strong> 운동법 모름·PT비 부담·헬스장 눈치<br><strong>고객:</strong> 운동 방법 모르는 MZ
+                  여성·PT 부담스러운 일반인<br><strong>경쟁우위:</strong> AI 보이스 코칭·커넥트 센서 특허·무료 PT 경험<br><strong>채널:</strong> 앱
+                  스토어·SNS·인플루언서</p>
+              </div>
+            </div>
+
+            <div class="project-footer">
+              <div class="tech-stack">
+                <span class="tech-badge">게이미피케이션</span>
+                <span class="tech-badge">추천 로직</span>
+                <span class="tech-badge">보이스 코칭</span>
+                <span class="tech-badge">영문화 DB</span>
+              </div>
+              <button class="toggle-btn" onclick="toggleDetail('spotu-detail-2', this)">
+                자세히 보기
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- PROJECTS WORK -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Vibe Coding Projects</div>
+        <h2>문서를 넘어<br><em>실제 제품으로 검증</em></h2>
+        <p
+          style="font-size:15px; color:var(--text-2); margin-top:16px; font-weight:300; max-width:600px; line-height:1.75;">
+          2026년 4개월 동안 7개의 프로덕트를 바이브코딩으로 설계·구현했습니다. 개인 프로젝트와 업무 프로토타입을 포함해, 일부는 기획부터 코딩까지 전 과정을 단독으로 수행했고, 일부는 디자이너·개발자와
+          협업하여 IA·UX 설계, 로컬 MVP 제작, 실제 사용과 피드백 반영의 사이클을 빠르게 여러 번 돌렸습니다.
         </p>
       </div>
 
@@ -1865,14 +2133,14 @@
             </div>
             <div class="screenshot-detail">
               <div class="img-cell">
-                <img src="https://i.ibb.co/Kx8ybGC8/2026-04-26-202150.jpg" alt="Project Screenshot">
+                <img src="https://i.ibb.co/xSyyYVfY/2026-04-26-202057.jpg" alt="Project Screenshot">
               </div>
               <div class="img-cell">
-                <img src="https://i.ibb.co/t08QSCg/2026-04-26-202216.jpg" alt="Project Screenshot">
+                <img src="https://i.ibb.co/bj6wpqpC/2026-04-26-202133.jpg" alt="Project Screenshot">
               </div>
               <div class="img-cell"><img src="https://i.ibb.co/S4G4cRQt/2026-04-26-202235.jpg" alt="Screenshot 3">
               </div>
-              <div class="img-cell"><img src="https://i.ibb.co/cKZ959TZ/2026-04-26-202116.jpg" alt="Screenshot 4">
+              <div class="img-cell"><img src="https://i.ibb.co/t08QSCg/2026-04-26-202216.jpg" alt="Screenshot 4">
               </div>
             </div>
           </div>
@@ -2118,7 +2386,7 @@
               <div class="detail-block">
                 <div class="detail-label">내 역할</div>
                 <p class="detail-text">
-                  10단계 핵심 워크플로우 설계, 3개 사용자 페르소나(입문·중급·디자이너) 정의,
+                  유저플로우 설계, 3개 사용자 페르소나(입문·중급·디자이너) 정의,
                   의존성 트리 기반 실시간 재계산 아키텍처 기획, 바이브코딩으로 인터랙티브 그리드 에디터 구현.
                 </p>
               </div>
@@ -2249,7 +2517,7 @@
               <div style="display:flex; align-items:center; justify-content:space-between;">
                 <div>
                   <div class="strength-num">TOEIC</div>
-                  <div class="strength-title" style="font-size:13px; margin:0;">950점 · OPIc IM High</div>
+                  <div class="strength-title" style="font-size:13px; margin:0;">915점 · OPIc IH</div>
                 </div>
                 <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-3);">영어</div>
               </div>
@@ -2386,6 +2654,43 @@
       navLinks.forEach(a => {
         a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
       });
+    });
+
+    // Theme Toggle Logic
+    const themeToggle = document.getElementById('themeToggle');
+    const htmlElement = document.documentElement;
+    const themeIcon = document.getElementById('themeIcon');
+
+    const sunIcon = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
+    const moonIcon = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+
+    const savedTheme = localStorage.getItem('theme');
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+
+    let currentTheme = 'dark';
+    if (savedTheme) {
+      currentTheme = savedTheme;
+    } else if (prefersLight) {
+      currentTheme = 'light';
+    }
+
+    function setTheme(theme) {
+      if (theme === 'light') {
+        htmlElement.setAttribute('data-theme', 'light');
+        themeIcon.innerHTML = moonIcon;
+        localStorage.setItem('theme', 'light');
+      } else {
+        htmlElement.removeAttribute('data-theme');
+        themeIcon.innerHTML = sunIcon;
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    setTheme(currentTheme);
+
+    themeToggle.addEventListener('click', () => {
+      currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      setTheme(currentTheme);
     });
   </script>
   <div id="image-viewer" onclick="this.classList.remove('active')">
